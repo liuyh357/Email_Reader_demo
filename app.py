@@ -1,21 +1,127 @@
 
 
 
+
+
+# from flask import Flask, jsonify, request, send_from_directory
+# import dashscope
+# from http import HTTPStatus
+# import json
+
+# app = Flask(__name__, static_folder='public', static_url_path='')
+
+# def translate_to_chinese(api_key, user_input):
+#     dashscope.api_key = api_key
+#     prompt = "你是一个受众调研专家，下面我讲输入一段文本邮件，请你根据文本内容，分析谁最可能是该段文本邮件的受众。你需要返回五种最可能的受众。"
+#     prompt +="即使文本内容太少，不足以分析，你也要返回五种职业、年龄不同的、尽可能覆盖到大多数人的受众。"
+#     prompt += "年龄要精确到整数，而不是范围；性别需要你设定，要么男要么女；关系全部返回null。"
+#     prompt += "你的返回格式是:[{'occupation':xx,'age':xx,'gender':xx,'relationship':xx},......]"
+#     prompt += "你只需要返回这样的列表中嵌套字典的格式就可以，不需要多余的文字。下面是文本邮件内容："
+#     prompt += user_input
+
+#     response = dashscope.Generation.call(
+#         model=dashscope.Generation.Models.qwen_max,
+#         prompt=prompt
+#     )
+
+#     if response.status_code == HTTPStatus.OK:
+#         translation = response.output.text
+#         # 打印返回的结果
+#         print("\n\n\n~~~~~~~~~~~~~~~~~~~~")
+#         print("Qwen 返回的结果:")
+#         print(translation)
+#         # 预处理：将全角逗号替换为半角逗号
+#         translation = translation.replace('，', ',')
+#         try:
+#             translation_list = json.loads(translation)
+#             return translation_list
+#         except json.JSONDecodeError as e:
+#             print(f"JSON解析错误: {e}")
+#             return None
+#     else:
+#         print(f"Error Code: {response.code}")
+#         print(f"Error Message: {response.message}")
+#         return None
+
+# @app.route('/')
+# def serve_static():
+#     return send_from_directory(app.static_folder, 'index.html')
+
+# @app.route('/api/get-text', methods=['GET'])
+# def get_text():
+#     avatar_id = request.args.get('avatarId')
+#     text = f"这是头像{avatar_id}对应的文本"
+#     return jsonify({"text": text})
+
+# @app.route('/api/get-info', methods=['GET'])
+# def get_info():
+#     avatar_id = request.args.get('avatarId')
+#     field = request.args.get('field')
+#     info = f"这是头像{avatar_id}的{field}"
+#     return jsonify({"value": info})
+
+# @app.route('/analyze', methods=['POST'])
+# def analyze():
+#     api_key = "sk-c30672bc9ae049cd88fa9f81e3405cff"  # 替换为你的通义千问API密钥
+#     user_input = request.form['user_input']
+#     translation_list = translate_to_chinese(api_key, user_input)
+#     print("\n\n\n~~~~~~~~~~~~~~~~~~~~")
+#     print(jsonify(translation_list))
+#     return jsonify(translation_list)
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+
 from flask import Flask, jsonify, request, send_from_directory
+import dashscope
+from http import HTTPStatus
+import json
+import re
 
 app = Flask(__name__, static_folder='public', static_url_path='')
+
+def translate_to_chinese(api_key, user_input):
+    dashscope.api_key = api_key
+    prompt = "你是一个受众调研专家，下面我讲输入一段文本邮件，请你根据文本内容，分析谁最可能是该段文本邮件的受众。你需要返回五个最可能的受众。"
+    prompt+="即使文本内容太少，不足以分析，你也要返回五种职业、年龄不同的、尽可能覆盖到大多数人的受众。"#防止内容太少，LLM处于严谨返回均为未知
+    prompt += "年龄要精确到整数，而不是范围；性别需要你设定，要么男要么女；关系你也要指定。"#防止出现范围或者位置
+    prompt += "你的返回格式是:[{'occupation':xx,'age':xx,'gender':xx,'relationship':xx},......]"#防止格式问题
+    prompt +="你的返回必须是英文的。"#防止解析失败
+    prompt += "你只需要返回这样的列表中嵌套字典的格式就可以，不需要多余的文字。下面是文本邮件内容："
+    prompt += user_input
+
+    response = dashscope.Generation.call(
+        model=dashscope.Generation.Models.qwen_max,
+        prompt=prompt
+    )
+
+    if response.status_code == HTTPStatus.OK:
+        translation = response.output.text
+        # 打印返回的结果
+        print("\n\n\n~~~~~~~~~~~~~~~~~~~~")
+        print("Qwen 返回的结果:")
+        print(translation)
+        # 修复 JSON 格式：将单引号替换为双引号
+        translation = re.sub(r"'(\w+)'", r'"\1"', translation)
+        try:
+            translation_list = json.loads(translation)
+            return translation_list
+        except json.JSONDecodeError as e:
+            print(f"JSON解析错误: {e}")
+            return None
+    else:
+        print(f"Error Code: {response.code}")
+        print(f"Error Message: {response.message}")
+        return None
 
 @app.route('/')
 def serve_static():
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api/get-text', methods=['GET'])
-
-
-
 def get_text():
     avatar_id = request.args.get('avatarId')
-    # 根据avatar_id从数据库或其他数据源获取文本
     text = f"这是头像{avatar_id}对应的文本"
     return jsonify({"text": text})
 
@@ -23,12 +129,17 @@ def get_text():
 def get_info():
     avatar_id = request.args.get('avatarId')
     field = request.args.get('field')
-    # 根据avatar_id和field从数据库或其他数据源获取信息
     info = f"这是头像{avatar_id}的{field}"
     return jsonify({"value": info})
 
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    api_key = "sk-c30672bc9ae049cd88fa9f81e3405cff"  # 替换为你的通义千问API密钥
+    user_input = request.form['user_input']
+    translation_list = translate_to_chinese(api_key, user_input)
+    print("\n\n\n~~~~~~~~~~~~~~~~~~~~")
+    print(jsonify(translation_list))
+    return jsonify(translation_list)
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
