@@ -1,5 +1,7 @@
 <!-- 
-<!DOCTYPE html>
+
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,10 +11,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>文本输入</h1>
-        <textarea id="inputText" rows="10" cols="50" placeholder="请输入或复制文本"></textarea>
+        <h1>邮件内容输入</h1>
+        <textarea id="userInput" rows="10" cols="50" placeholder="请输入邮件文本"></textarea>
+        <button id="submitButton">提交</button>
+        <div id="result"></div>
         
-        <h2>选择头像</h2>
+        <h2>用户选择</h2>
         <div class="avatar-row">
             <div class="avatar-item">
                 <img src="avatar1.png" alt="Avatar 1" class="avatar" data-id="1">
@@ -38,68 +42,67 @@
             <input type="text" class="info" data-field="contact" placeholder="联系">
         </div>
         
-        <button id="applyButton" style="display: none;">Apply</button>
+        <button id="applyButton" style="display: none;">应用</button>
         
-        <h2>后端返回的文本</h2>
-        <textarea id="outputText" rows="10" cols="50" placeholder="后端返回的文本"></textarea>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html> -->
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文本框示例</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>文本输入</h1>
-        <textarea id="userInput" rows="10" cols="50" placeholder="请输入文本"></textarea>
-        <button id="submitButton">Submit</button>
-        
-        <h2>选择头像</h2>
-        <div class="avatar-row">
-            <div class="avatar-item">
-                <img src="avatar1.png" alt="Avatar 1" class="avatar" data-id="1">
-            </div>
-            <div class="avatar-item">
-                <img src="avatar2.png" alt="Avatar 2" class="avatar" data-id="2">
-            </div>
-            <div class="avatar-item">
-                <img src="avatar3.png" alt="Avatar 3" class="avatar" data-id="3">
-            </div>
-            <div class="avatar-item">
-                <img src="avatar4.png" alt="Avatar 4" class="avatar" data-id="4">
-            </div>
-            <div class="avatar-item">
-                <img src="avatar5.png" alt="Avatar 5" class="avatar" data-id="5">
-            </div>
-        </div>
-        
-        <div class="info-row">
-            <input type="text" class="info" data-field="occupation" placeholder="职业">
-            <input type="text" class="info" data-field="age" placeholder="年龄">
-            <input type="text" class="info" data-field="gender" placeholder="性别">
-            <input type="text" class="info" data-field="contact" placeholder="联系">
-        </div>
-        
-        <button id="applyButton" style="display: none;">Apply</button>
-        
-        <h2>后端返回的文本</h2>
-        <textarea id="outputText" rows="10" cols="50" placeholder="后端返回的文本"></textarea>
+        <h2>用户反馈</h2>
+        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+ -->
 
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本框示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>邮件内容输入</h1>
+        <textarea id="userInput" rows="10" cols="50" placeholder="请输入邮件文本"></textarea>
+        <button id="submitButton">提交</button>
+        
+        <!-- 预留位置显示提示信息 -->
+        <div id="result" style="margin-bottom: 20px;">请输入邮件内容后点击提交</div>
+        
+        <h2>用户选择</h2>
+        <div class="avatar-row">
+            <div class="avatar-item">
+                <img src="avatar1.png" alt="Avatar 1" class="avatar" data-id="1">
+            </div>
+            <div class="avatar-item">
+                <img src="avatar2.png" alt="Avatar 2" class="avatar" data-id="2">
+            </div>
+            <div class="avatar-item">
+                <img src="avatar3.png" alt="Avatar 3" class="avatar" data-id="3">
+            </div>
+            <div class="avatar-item">
+                <img src="avatar4.png" alt="Avatar 4" class="avatar" data-id="4">
+            </div>
+            <div class="avatar-item">
+                <img src="avatar5.png" alt="Avatar 5" class="avatar" data-id="5">
+            </div>
+        </div>
+        
+        <div class="info-row">
+            <input type="text" class="info" data-field="occupation" placeholder="职业">
+            <input type="text" class="info" data-field="age" placeholder="年龄">
+            <input type="text" class="info" data-field="gender" placeholder="性别">
+            <input type="text" class="info" data-field="relationship" placeholder="关系">
+        </div>
+        
+        <button id="applyButton" style="display: none;">应用</button>
+        
+        <h2>用户反馈</h2>
+        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
