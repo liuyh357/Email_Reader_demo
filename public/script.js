@@ -1,6 +1,8 @@
 
 
 
+
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     const userInput = document.getElementById('userInput');
 //     const submitButton = document.getElementById('submitButton');
@@ -12,6 +14,7 @@
 //     const applyResultDiv = document.getElementById('applyResult');
 //     const replyText = document.getElementById('replyText');
 //     const replyButton = document.getElementById('replyButton');
+//     const replyResultDiv = document.getElementById('replyResult');
 //     let selectedAvatarId = null;
 //     let analysisResults = [];
 
@@ -94,6 +97,8 @@
 //             const gender = document.querySelector(`input[data-field="gender"]`).value;
 //             const relationship = document.querySelector(`input[data-field="relationship"]`).value;
 
+//             replyResultDiv.textContent = '后端正在努力生成回信中';
+
 //             fetch('/generate-reply', {
 //                 method: 'POST',
 //                 headers: {
@@ -104,19 +109,16 @@
 //             .then(response => response.json())
 //             .then(data => {
 //                 replyText.value = data.reply;
+//                 replyResultDiv.textContent = '回信生成完成';
 //             })
 //             .catch(error => {
 //                 console.error('Error generating reply:', error);
 //                 replyText.value = '生成回信失败，请重试。';
+//                 replyResultDiv.textContent = '回信生成失败，请重试。';
 //             });
 //         }
 //     });
 // });
-
-
-
-
-
 
 
 
@@ -163,8 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
             avatars.forEach(av => av.classList.remove('selected'));
             avatar.classList.add('selected');
             selectedAvatarId = avatar.getAttribute('data-id');
-            applyButton.style.display = 'block';
-            replyButton.style.display = 'block';
+            applyButton.style.display = 'inline-block';
+            replyButton.style.display = 'inline-block';
 
             if (analysisResults.length > 0) {
                 const selectedResult = analysisResults[selectedAvatarId - 1];

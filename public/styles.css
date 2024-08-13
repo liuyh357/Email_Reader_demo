@@ -1,8 +1,7 @@
 /* 
 
 
-
-  body {
+body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -19,6 +18,12 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    overflow-y: auto; 
+    max-height: 90vh;
+}
+
+h1 {
+    margin-top: 0; 
 }
 
 textarea {
@@ -66,8 +71,8 @@ textarea {
 }
 
 button {
-    display: block;
-    margin: 0 auto 20px;
+    display: inline-block;
+    margin: 0;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -76,6 +81,9 @@ button {
 #result, #applyResult, #replyResult {
     margin-bottom: 20px;
 } */
+
+
+
 
 
 body {
@@ -148,8 +156,8 @@ textarea {
 }
 
 button {
-    display: block;
-    margin: 0 auto 20px;
+    display: inline-block;
+    margin: 0;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;

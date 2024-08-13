@@ -1,5 +1,7 @@
 <!-- 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,7 @@
         <textarea id="userInput" rows="10" cols="50" placeholder="请输入邮件文本"></textarea>
         <button id="submitButton">提交</button>
         
-
+       
         <div id="result" style="margin-bottom: 20px;">请输入邮件内容后点击提交</div>
         
         <h2>用户选择</h2>
@@ -43,20 +45,16 @@
             <input type="text" class="info" data-field="relationship" placeholder="关系">
         </div>
         
-        <h2>用户反馈</h2>
-        <div style="display: flex; align-items: center;">
-            <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
-            <button id="applyButton" style="display: none; margin-left: 10px;">应用</button>
-        </div>
-
+        <h2 style="display: inline-block;">用户反馈</h2>
+        <button id="applyButton" style="display: inline-block; margin-left: 10px;">应用</button>
+        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+ 
         <div id="applyResult" style="margin-bottom: 20px;"></div>
         
-        <h2>模拟回信</h2>
-        <div style="display: flex; align-items: center;">
-            <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
-            <button id="replyButton" style="display: none; margin-left: 10px;">生成回信</button>
-        </div>
-
+        <h2 style="display: inline-block;">模拟回信</h2>
+        <button id="replyButton" style="display: inline-block; margin-left: 10px;">生成回信</button>
+        <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
+        
         <div id="replyResult" style="margin-bottom: 20px;"></div>
     </div>
 
@@ -67,9 +65,6 @@
 
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,19 +108,15 @@
             <input type="text" class="info" data-field="relationship" placeholder="关系">
         </div>
         
-        <h2>用户反馈</h2>
-        <div style="display: flex; align-items: center;">
-            <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
-            <button id="applyButton" style="display: none; margin-left: 10px;">应用</button>
-        </div>
+        <h2 style="display: inline-block;">用户反馈</h2>
+        <button id="applyButton" style="display: inline-block; margin-left: 10px;">应用</button>
+        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
         <!-- 预留位置显示提示信息 -->
         <div id="applyResult" style="margin-bottom: 20px;"></div>
         
-        <h2>模拟回信</h2>
-        <div style="display: flex; align-items: center;">
-            <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
-            <button id="replyButton" style="display: none; margin-left: 10px;">生成回信</button>
-        </div>
+        <h2 style="display: inline-block;">模拟回信</h2>
+        <button id="replyButton" style="display: inline-block; margin-left: 10px;">生成回信</button>
+        <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
         <!-- 预留位置显示提示信息 -->
         <div id="replyResult" style="margin-bottom: 20px;"></div>
     </div>
