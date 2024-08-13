@@ -1,7 +1,6 @@
 <!-- 
 
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +13,9 @@
         <h1>邮件内容输入</h1>
         <textarea id="userInput" rows="10" cols="50" placeholder="请输入邮件文本"></textarea>
         <button id="submitButton">提交</button>
-        <div id="result"></div>
+        
+
+        <div id="result" style="margin-bottom: 20px;">请输入邮件内容后点击提交</div>
         
         <h2>用户选择</h2>
         <div class="avatar-row">
@@ -39,22 +40,37 @@
             <input type="text" class="info" data-field="occupation" placeholder="职业">
             <input type="text" class="info" data-field="age" placeholder="年龄">
             <input type="text" class="info" data-field="gender" placeholder="性别">
-            <input type="text" class="info" data-field="contact" placeholder="联系">
+            <input type="text" class="info" data-field="relationship" placeholder="关系">
         </div>
         
-        <button id="applyButton" style="display: none;">应用</button>
-        
         <h2>用户反馈</h2>
-        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+        <div style="display: flex; align-items: center;">
+            <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+            <button id="applyButton" style="display: none; margin-left: 10px;">应用</button>
+        </div>
+
+        <div id="applyResult" style="margin-bottom: 20px;"></div>
+        
+        <h2>模拟回信</h2>
+        <div style="display: flex; align-items: center;">
+            <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
+            <button id="replyButton" style="display: none; margin-left: 10px;">生成回信</button>
+        </div>
+
+        <div id="replyResult" style="margin-bottom: 20px;"></div>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html>
- -->
+</html> -->
 
 
- <!DOCTYPE html>
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,10 +113,21 @@
             <input type="text" class="info" data-field="relationship" placeholder="关系">
         </div>
         
-        <button id="applyButton" style="display: none;">应用</button>
-        
         <h2>用户反馈</h2>
-        <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+        <div style="display: flex; align-items: center;">
+            <textarea id="outputText" rows="10" cols="50" placeholder="用户反馈"></textarea>
+            <button id="applyButton" style="display: none; margin-left: 10px;">应用</button>
+        </div>
+        <!-- 预留位置显示提示信息 -->
+        <div id="applyResult" style="margin-bottom: 20px;"></div>
+        
+        <h2>模拟回信</h2>
+        <div style="display: flex; align-items: center;">
+            <textarea id="replyText" rows="10" cols="50" placeholder="模拟回信"></textarea>
+            <button id="replyButton" style="display: none; margin-left: 10px;">生成回信</button>
+        </div>
+        <!-- 预留位置显示提示信息 -->
+        <div id="replyResult" style="margin-bottom: 20px;"></div>
     </div>
 
     <script src="script.js"></script>
